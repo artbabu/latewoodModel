@@ -4,7 +4,7 @@
 PShape cube;
 PShape subCube1;
 PShape subCube2;
-float cubeSize = 25;
+float cubeSize = 12.5;
 float circleRad = 8;
 int circleRes = 8;
 float noiseMag = 1;
@@ -62,7 +62,7 @@ public void keyPressed() {
 void createCube() {
   cube = createShape(GROUP);
   cube.noStroke();
- cube. fill(255, 255, 255);
+ 
   int i =0 ;
   float tranX = 25 ;
   float tranZ = 25 ;
@@ -71,7 +71,7 @@ void createCube() {
   while( i<4){
     
    PShape cubeRow = createShape(GROUP);
-   //pushMatrix();
+  
    
   pushMatrix();
   subCube1 = createShape(GROUP);
@@ -91,7 +91,7 @@ void createCube() {
   tranX += tranX;
   tranZ += tranZ;
   cube.addChild(cubeRow);
- // popMatrix();
+ 
   i++;
   println("cubeRow ===>"+cubeRow.getChildCount());
   }
@@ -107,7 +107,7 @@ PShape createSubCube(PShape scube)
   // Rotate all the faces to their positions
 
     face = createShape();
-    createFaceWithHole(face,+cubeSize/2,+(10*cubeSize));
+    createFaceWithHole(face,+cubeSize,+(20*cubeSize));
     scube.addChild(face);
   
   //// Front face - already correct
@@ -116,7 +116,7 @@ PShape createSubCube(PShape scube)
     
     face = createShape();
     face.rotateY(radians(180));
-    createFaceWithHole(face,+cubeSize/2,+(10*cubeSize));
+    createFaceWithHole(face,+cubeSize,+(20*cubeSize));
     scube.addChild(face);
    
 
@@ -126,7 +126,7 @@ PShape createSubCube(PShape scube)
 
    face = createShape();
    face.rotateY(radians(90));
-   createFaceWithHole(face,+cubeSize/2,+(10*cubeSize));
+   createFaceWithHole(face,+cubeSize,+(20*cubeSize));
    scube.addChild(face);
 // //// Right face
 //// face = cube.getChild(2);
@@ -135,7 +135,7 @@ PShape createSubCube(PShape scube)
 // //// Left face
  face = createShape();
  face.rotateY(radians(-90));
- createFaceWithHole(face,+cubeSize/2,+(10*cubeSize));
+ createFaceWithHole(face,+cubeSize,+(20*cubeSize));
  scube.addChild(face);
   
  
@@ -143,14 +143,14 @@ PShape createSubCube(PShape scube)
     // Top face
     face = createShape();
     face.rotateX(radians(90));
-    createTopFaceWithHole(face,+cubeSize/2,+cubeSize/2);
+    createTopFaceWithHole(face,+cubeSize,+(20*cubeSize));
     scube.addChild(face);
 // face = cube.getChild(4);
 
 // //// Bottom face
   face = createShape();
     face.rotateX(radians(-90));
-    createTopFaceWithHole(face,+cubeSize/2,+cubeSize/2);
+    createTopFaceWithHole(face,+cubeSize,+(20*cubeSize));
     scube.addChild(face);
     
     
@@ -158,8 +158,8 @@ PShape createSubCube(PShape scube)
 }
 void createFaceWithHole(PShape face,float l,float b) {
   face.beginShape(POLYGON);
-  face.noStroke();
-
+ // face.noStroke();
+face.fill(120, 57, 0);
   // Draw main shape Clockwise
   face.vertex(-(l), -b, +l);
   face.vertex(+(l), -b, +l);
@@ -208,12 +208,12 @@ void createTopFaceWithHole(PShape face,float l,float b) {
   face.beginShape(POLYGON);
   face.fill(255, 255, 255);
  // face.noStroke();
-
+face.fill(120, 57, 0);
   // Draw main shape Clockwise
-  face.vertex(-l, -b, +(20*l));
-  face.vertex(+l, -b, +(20*l));
-  face.vertex(+l, +b, +(20*l));
-  face.vertex(-l, +b, +(20*l));
+  face.vertex(-l, -l, +b);
+  face.vertex(+l, -l, +b);
+  face.vertex(+l, +l, +b);
+  face.vertex(-l, +l, +b);
 
 //println(-(l)+"//"+ -b +"//"+ +(20*l));
 //  println(+(l)+"//"+ -b+"//"+ +(20*l));
@@ -253,7 +253,7 @@ void createTopFaceWithHole(PShape face,float l,float b) {
   for (int i = 0; i < circleRes; i++) {
    float angle = TWO_PI * i / circleRes;
    float x = sin(  angle ) * (circleRad);
-   float y = cos(  angle  ) * (2*circleRad);
+   float y = cos(  angle  ) * (circleRad);
    face.vertex( x, y,(20*l));     
  
     // println(x+"//"+y+"//"+(20*l));
