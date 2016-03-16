@@ -102,12 +102,18 @@ void createCube() {
 PShape createSubCube(PShape scube)
 {
    PShape face;
+   float defHor = +(20*cubeSize) ;
+   
+   float spoint = random(defHor);
+   float epoint = defHor - spoint ;
+    
 
- 
+   if(spoint > epoint)
+     
   // Rotate all the faces to their positions
 
     face = createShape();
-    createFaceWithHole(face,+cubeSize,+(20*cubeSize));
+    createFaceWithHole(face,+cubeSize,defHor,spoint,epoint);
     scube.addChild(face);
   
   //// Front face - already correct
@@ -116,7 +122,7 @@ PShape createSubCube(PShape scube)
     
     face = createShape();
     face.rotateY(radians(180));
-    createFaceWithHole(face,+cubeSize,+(20*cubeSize));
+    createFaceWithHole(face,+cubeSize,defHor,spoint,epoint);
     scube.addChild(face);
    
 
@@ -126,7 +132,7 @@ PShape createSubCube(PShape scube)
 
    face = createShape();
    face.rotateY(radians(90));
-   createFaceWithHole(face,+cubeSize,+(20*cubeSize));
+   createFaceWithHole(face,+cubeSize,defHor,spoint,spoint);
    scube.addChild(face);
 // //// Right face
 //// face = cube.getChild(2);
@@ -135,7 +141,7 @@ PShape createSubCube(PShape scube)
 // //// Left face
  face = createShape();
  face.rotateY(radians(-90));
- createFaceWithHole(face,+cubeSize,+(20*cubeSize));
+  createFaceWithHole(face,+cubeSize,defHor,epoint,epoint);
  scube.addChild(face);
   
  
@@ -143,14 +149,14 @@ PShape createSubCube(PShape scube)
     // Top face
     face = createShape();
     face.rotateX(radians(90));
-    createTopFaceWithHole(face,+cubeSize,+(20*cubeSize));
+    createTopFaceWithHole(face,+cubeSize,defHor);
     scube.addChild(face);
 // face = cube.getChild(4);
 
 // //// Bottom face
   face = createShape();
     face.rotateX(radians(-90));
-    createTopFaceWithHole(face,+cubeSize,+(20*cubeSize));
+    createTopFaceWithHole(face,+cubeSize,defHor);
     scube.addChild(face);
     
     
